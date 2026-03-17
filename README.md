@@ -1,6 +1,6 @@
 # mikoshi-example
 
-This is meant for newcomers to nixOS in general, this flake takes some liberties to make the onboarding process as simple as possible. Consequently, if you are an experience nixOS user, I recommend that you just import the relevant mikoshi modules directly, this is more for fresh installs.
+This is meant for newcomers to nixOS in general, this flake takes some liberties to make the onboarding process as simple as possible. Consequently, if you are an experienced nixOS user, I recommend that you just import the relevant mikoshi modules directly, this is more for fresh installs.
 
 Main repo: [Mikoshi](https://github.com/szewczyk-bartosz/mikoshi).
 
@@ -31,7 +31,7 @@ cd /mnt/etc/nixos/
 git clone https://github.com/szewczyk-bartosz/mikoshi-example
 cd mikoshi-example
 cp ../hardware-configuration.nix .
-vim/nano flake.nix
+vim flake.nix
 ```
 > TIP: If the tool you want like vim or git is not there, you can temporarily pull it in with `nix-shell -p vim`
 
@@ -61,6 +61,18 @@ From here you can push it to your own GitHub repo and treat it as your personal 
 
 ```bash
 sudo nixos-rebuild switch --flake .#yourhostname
+```
+
+If you want to update your system:
+
+```bash
+nix flake update
+```
+
+> Remember that if updating causes problems (due to bugs in packages), you can always roll back with
+
+```bash
+sudo nixos-rebuild switch --rollback
 ```
 
 ---
