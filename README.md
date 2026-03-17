@@ -22,6 +22,83 @@ Main repo: [Mikoshi](https://github.com/szewczyk-bartosz/mikoshi).
 - Format and mount your drives to `/mnt` (use `cfdisk` or your preferred tool)
 - Run `nixos-generate-config --root /mnt` to detect your hardware
 
+> If you aren't sure how to format drives, the nixOS wiki contains an article on the installation of nixOS, feel free to follow it to format and mount your drives https://nixos.wiki/wiki/NixOS_Installation_Guide
+> For convenience, quoting from their wiki, all credit to the original author:
+To partition your drive, run:
+ 
+```bash
+sudo fdisk /dev/diskX
+```
+ 
+Replace `diskX` with your disk, typically something like `/dev/sda`. You can find your disk with `lsblk`.
+ 
+Depending on your hardware, follow either the DOS or UEFI instructions below. To check if you're on EFI, run `ls /sys/firmware/efi/` — if the directory exists, you're on EFI.
+ 
+## UEFI Instructions
+ 
+In the `fdisk` interactive prompt, enter the following commands:
+ 
+- `g` — GPT disk label
+- `n`
+- `1` — partition number
+- `2048` — first sector
+- `+500M` — boot partition size
+- `t`
+- `1` — EFI System type
+- `n`
+- `2`
+- default — fill up remaining space
+- default
+- `w` — write and exit
+ 
+## DOS (BIOS) Instructions
+ 
+In the `fdisk` interactive prompt, enter the following commands:
+ 
+- `o` — DOS disk label
+- `n`
+- `p` — primary
+- `1` — partition number
+- `2048` — first sector
+- `+500M` — boot partition size
+- `Y` — remove signature if prompted
+- `n`
+- `p`
+- `2`
+- default — fill up remaining space
+- default
+- `w` — write and exit
+ 
+## Label and Format Partitions
+ 
+Find the partitions you just created with `lsblk`. If your drive is `/dev/sda`, they'll typically be `/dev/sda1` and `/dev/sda2`.
+ 
+```bash
+sudo mkfs.fat -F 32 /dev/sda1
+sudo fatlabel /dev/sda1 NIXBOOT
+sudo mkfs.ext4 /dev/sda2 -L NIXROOT
+```
+ 
+## Mount Partitions
+ 
+```bash
+sudo mount /dev/disk/by-label/NIXROOT /mnt
+sudo mkdir -p /mnt/boot
+sudo mount /dev/disk/by-label/NIXBOOT /mnt/boot
+```
+ 
+## Swap (optional)
+ 
+Recommended if you have less than 16GB of RAM.
+ 
+```bash
+sudo dd if=/dev/zero of=/mnt/.swapfile bs=1024 count=2097152  # 2GB
+sudo chmod 600 /mnt/.swapfile
+sudo mkswap /mnt/.swapfile
+sudo swapon /mnt/.swapfile
+```
+
+
 ---
 
 ## Installation
