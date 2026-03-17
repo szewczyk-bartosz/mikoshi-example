@@ -11,7 +11,8 @@ Main repo: [Mikoshi](https://github.com/szewczyk-bartosz/mikoshi).
 - A fully configured GNOME desktop (via the `gnomoshi` profile)
 - Custom Neovim, ghostty, tmux, stylix theming, audio, fonts, icons — all set up and ready
 - home-manager wired in as a NixOS module
-- A single `flake.nix` you only need to make 3 - 6 edits to
+- A single `flake.nix` you only need to make a couple of edits to
+- The flake utilises 'throw' to try to make sure you do not forget to set anything, if it doesn't work - read the error, you might've forgotten something!
 
 ---
 
@@ -37,8 +38,8 @@ vim/nano flake.nix
 Open `flake.nix` and set the values at the top of the `let` block — `username`, `hostname`, and `systemStateVersion`. Everything else can be left as is (if you are on BIOS then read the boot comments).
 
 ```bash
-sudo nixos-install --flake .#yourhostname
-passwd yourusername
+sudo nixos-install --flake .#<yourhostname>
+passwd <yourusername>
 reboot
 ```
 
