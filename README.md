@@ -20,7 +20,8 @@ Main repo: [Mikoshi](https://github.com/szewczyk-bartosz/mikoshi).
  
 Boot into the NixOS live USB, then format and mount your drives.
  
-> TIP: If a tool you need isn't on the live USB, pull it in temporarily with `nix-shell -p vim`
+> TIP: If a tool you need isn't on the live USB, pull it in temporarily with `nix-shell -p`
+> For example if you wanted vim you could do `nix-shell -p vim`
  
 ### Partitioning
  
