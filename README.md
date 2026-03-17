@@ -25,7 +25,7 @@ Boot into the NixOS live USB, then format and mount your drives.
  
 ### Partitioning
  
-*Adapted from the [NixOS Installation Guide](https://nixos.wiki/wiki/NixOS_Installation_Guide).*
+*Adapted from the [NixOS Installation Guide](https://nixos.wiki/wiki/NixOS_Installation_Guide). All credit to the original author*
  
 Find your disk with `lsblk`, then run:
  
@@ -97,7 +97,7 @@ cp ../hardware-configuration.nix .
 vim flake.nix
 ```
  
-Open `flake.nix` and set the values at the top of the `let` block — `username`, `hostname`, and `systemStateVersion`. Everything else can be left as is (if you are on BIOS then read the boot comments).
+Open `flake.nix` as root (using sudo) and set the values at the top of the `let` block — `username`, `hostname`, and `systemStateVersion`. Everything else can be left as is (if you are on BIOS then read the boot comments).
  
 ```bash
 sudo nixos-install --flake .#<yourhostname>
