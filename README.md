@@ -94,6 +94,7 @@ cd /mnt/etc/nixos/
 git clone https://github.com/szewczyk-bartosz/mikoshi-example
 cd mikoshi-example
 cp ../hardware-configuration.nix .
+git add .
 vim flake.nix
 ```
  
