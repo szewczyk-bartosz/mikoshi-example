@@ -92,6 +92,20 @@ nixos-generate-config --root /mnt
 ```bash
 cd /mnt/etc/nixos/
 git clone https://github.com/szewczyk-bartosz/mikoshi-example
+```
+
+Either (this will automatically set systemStateVersion):
+
+```bash
+cd /mnt/etc/nixos/
+chmod +x setup.sh
+./setup.sh
+vim flake.nix
+```
+
+OR manually:
+```bash
+cd /mnt/etc/nixos/
 cd mikoshi-example
 cp ../hardware-configuration.nix .
 git add .
