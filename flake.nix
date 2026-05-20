@@ -32,8 +32,8 @@
       system = architecture;
       modules = [
         home-manager.nixosModules.home-manager
-        # The mikoshi profile you want, gnomoshi by default, please see the profiles/ directory in mikoshi for more
-        mikoshi.nixosModules.gnomoshi
+        # The mikoshi profile you want, mikoshi-gnome by default, please see the profiles/ directory in mikoshi for more
+        mikoshi.nixosModules.mikoshi-gnome
 
         # Uncomment and change the value to get a different colour scheme, most base16Schemes are available
         # Also check out the mikoshi repo features/stylix/themes for the custom themes present

@@ -8,7 +8,7 @@ Main repo: [Mikoshi](https://github.com/szewczyk-bartosz/mikoshi).
  
 ## What you get
  
-- A fully configured GNOME desktop (via the `gnomoshi` profile)
+- A fully configured GNOME desktop (via the `mikoshi-gnome` profile)
 - Custom Neovim, ghostty, tmux, stylix theming, audio, fonts, icons — all set up and ready
 - home-manager wired in as a NixOS module
 - A single `flake.nix` you only need to make a couple of edits to
@@ -166,7 +166,7 @@ Most base16 schemes are available. Custom themes are in `features/stylix/themes`
  
 **Home-manager** — Section 3 shows a basic git setup as an example of what home-manager can do. Search [mynixos.com](https://mynixos.com) with `home-manager` and a program name to see what options are available.
  
-**Profile** — `gnomoshi` is the default. See the `profiles/` directory in the mikoshi repo for other available profiles.
+**Profile** — `mikoshi-gnome` is the default. See the `profiles/` directory in the mikoshi repo for other available profiles.
  
 **BIOS systems** — if `ls /sys/firmware/efi/` returns nothing, you're on BIOS. Comment out the systemd-boot lines and uncomment the grub lines in Section 1.
  
