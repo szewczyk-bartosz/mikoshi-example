@@ -8,8 +8,8 @@ Main repo: [Mikoshi](https://github.com/szewczyk-bartosz/mikoshi).
  
 ## What you get
  
-- A fully configured GNOME desktop (via the `mikoshi-gnome` profile)
-- Custom Neovim, ghostty, tmux, stylix theming, audio, fonts, icons — all set up and ready
+- A fully configured Hyprland desktop (via the `mikoshi-hyprland` profile)
+- Custom Neovim, ghostty, tmux, stylix theming, audio, fonts, icons - all set up and ready
 - home-manager wired in as a NixOS module
 - A single `flake.nix` you only need to make a couple of edits to
 - The flake utilises 'throw' to try to make sure you do not forget to set anything, if it doesn't work - read the error, you might've forgotten something!
@@ -33,21 +33,21 @@ Find your disk with `lsblk`, then run:
 sudo fdisk /dev/diskX  # replace diskX with your disk, e.g. /dev/sda
 ```
  
-To check if you're on EFI, run `ls /sys/firmware/efi/` — if the directory exists, you're on EFI.
+To check if you're on EFI, run `ls /sys/firmware/efi/` - if the directory exists, you're on EFI.
  
 **UEFI (most modern hardware):**
-- `g` — GPT disk label
-- `n`, `1`, `2048`, `+500M` — create 500MB boot partition
-- `t`, `1` — set type to EFI System
-- `n`, `2`, default, default — create root partition using remaining space
-- `w` — write and exit
+- `g` - GPT disk label
+- `n`, `1`, `2048`, `+500M` - create 500MB boot partition
+- `t`, `1` - set type to EFI System
+- `n`, `2`, default, default - create root partition using remaining space
+- `w` - write and exit
  
 **DOS/BIOS:**
-- `o` — DOS disk label
-- `n`, `p`, `1`, `2048`, `+500M` — create 500MB boot partition
+- `o` - DOS disk label
+- `n`, `p`, `1`, `2048`, `+500M` - create 500MB boot partition
 - `Y` if prompted to remove signature
-- `n`, `p`, `2`, default, default — create root partition using remaining space
-- `w` — write and exit
+- `n`, `p`, `2`, default, default - create root partition using remaining space
+- `w` - write and exit
  
 ### Format and mount
  
@@ -112,7 +112,7 @@ git add .
 vim flake.nix
 ```
  
-Open `flake.nix` as root (using sudo) and set the values at the top of the `let` block — `username`, `hostname`, and `systemStateVersion`. Everything else can be left as is (if you are on BIOS then read the boot comments).
+Open `flake.nix` as root (using sudo) and set the values at the top of the `let` block - `username`, `hostname`, `timeZone`, and `systemStateVersion`. Everything else can be left as is (if you are on BIOS then read the boot comments).
  
 ```bash
 sudo nixos-install --flake .#<yourhostname>
@@ -120,7 +120,7 @@ passwd <yourusername>
 reboot
 ```
  
-> **Note:** Replace `yourhostname` with whatever you set `hostname` to in the flake, and `yourusername` with your username. Setting the password before reboot is important — skip it and you'll be locked out of your user account. Of course you can always log in as root and set it, but why not make it easier on yourself!
+> **Note:** Replace `yourhostname` with whatever you set `hostname` to in the flake, and `yourusername` with your username. Setting the password before reboot is important - skip it and you'll be locked out of your user account. Of course you can always log in as root and set it, but why not make it easier on yourself!
  
 ---
  
@@ -156,25 +156,25 @@ sudo nixos-rebuild switch --rollback
  
 ## Customisation
  
-**Colour scheme** — uncomment and change the stylix line in `flake.nix`:
+**Colour scheme** - uncomment and change the stylix line in `flake.nix`:
 ```nix
 {mikoshi.stylix.base16Scheme = "purple-dream-proto";}
 ```
 Most base16 schemes are available. Custom themes are in `features/stylix/themes` in the mikoshi repo.
  
-**Software** — add packages to `environment.systemPackages` in Section 2. Browse what's available at [mynixos.com](https://mynixos.com). For non-free software like Steam or Discord, set `nixpkgs.config.allowUnfree = true`.
+**Software** - add packages to `environment.systemPackages` in Section 2. Browse what's available at [mynixos.com](https://mynixos.com). For non-free software like Steam or Discord, set `nixpkgs.config.allowUnfree = true`.
  
-**Home-manager** — Section 3 shows a basic git setup as an example of what home-manager can do. Search [mynixos.com](https://mynixos.com) with `home-manager` and a program name to see what options are available.
+**Home-manager** - Section 3 shows a basic git setup as an example of what home-manager can do. Search [mynixos.com](https://mynixos.com) with `home-manager` and a program name to see what options are available.
  
-**Profile** — `mikoshi-gnome` is the default. See the `profiles/` directory in the mikoshi repo for other available profiles.
+**Profile** - `mikoshi-hyprland` is the default. See the `profiles/` directory in the mikoshi repo for other available profiles.
  
-**BIOS systems** — if `ls /sys/firmware/efi/` returns nothing, you're on BIOS. Comment out the systemd-boot lines and uncomment the grub lines in Section 1.
+**BIOS systems** - if `ls /sys/firmware/efi/` returns nothing, you're on BIOS. Comment out the systemd-boot lines and uncomment the grub lines in Section 1.
  
 ---
  
 ## Notes
  
-- This flake tracks `nixos-unstable`. On NixOS this is safe — if something breaks, roll back with `nixos-rebuild switch --rollback`.
+- This flake tracks `nixos-unstable`. On NixOS this is safe - if something breaks, roll back with `nixos-rebuild switch --rollback`.
 - `system.stateVersion` and `home.stateVersion` are not about keeping your system up to date. Set them once during install and never change them.
 - This is designed for EFI systems with home-manager as a NixOS module. Standalone home-manager is not supported or tested.
  

@@ -22,6 +22,8 @@
     # Set the values that have 'throw' in front of them and remove the 'throw'
     username = throw "Set your username";
     hostname = throw "Set your hostname";
+    timeZone = throw "Set your timezone e.g. \"Europe/London\"";
+    locale = "en_US.UTF-8"; # Change if needed e.g. "en_GB.UTF-8"
     architecture = "x86_64-linux"; # Change if different architecture
     systemStateVersion = throw "Set your stateVersion to the one in /etc/nixos/configuration.nix (at the bottom)";
     homeManagerStateVersion = "25.11";
@@ -32,8 +34,8 @@
       system = architecture;
       modules = [
         home-manager.nixosModules.home-manager
-        # The mikoshi profile you want, mikoshi-gnome by default, please see the profiles/ directory in mikoshi for more
-        mikoshi.nixosModules.mikoshi-gnome
+        # The mikoshi profile you want, mikoshi-hyprland by default, please see the profiles/ directory in mikoshi for more
+        mikoshi.nixosModules.mikoshi-hyprland
 
         # Uncomment and change the value to get a different colour scheme, most base16Schemes are available
         # Also check out the mikoshi repo features/stylix/themes for the custom themes present
@@ -77,6 +79,8 @@
           ###### SECTION 3 - users and home-manager setup ######
           # You could just leave this as is, if you want to, enable git and read the comment block below
           networking.hostName = hostname;
+          time.timeZone = timeZone;
+          i18n.defaultLocale = locale;
           users.users.${username} = {
             isNormalUser = true;
             extraGroups = ["wheel"];
