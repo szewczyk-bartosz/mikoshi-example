@@ -72,13 +72,8 @@ sudo mount /dev/disk/by-label/NIXROOT /mnt
  
 ### Swap (optional, recommended if < 16GB RAM)
  
-```bash
-sudo dd if=/dev/zero of=/mnt/.swapfile bs=1024 count=2097152  # 2GB
-sudo chmod 600 /mnt/.swapfile
-sudo mkswap /mnt/.swapfile
-sudo swapon /mnt/.swapfile
-```
- 
+Set up using a swapfile inside the flake
+
 ### Detect hardware
  
 ```bash

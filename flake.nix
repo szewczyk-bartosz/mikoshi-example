@@ -23,6 +23,7 @@
     username = throw "Set your username";
     hostname = throw "Set your hostname";
     timeZone = throw "Set your timezone e.g. \"Europe/London\"";
+    swapSize = throw "Set your swapSize in MB, usually around the same as your RAM";
     locale = "en_US.UTF-8"; # Change if needed e.g. "en_GB.UTF-8"
     architecture = "x86_64-linux"; # Change if different architecture
     systemStateVersion = throw "Set your stateVersion to the one in /etc/nixos/configuration.nix (at the bottom)";
@@ -53,6 +54,12 @@
           # hardware no need to change it just make sure to copy it from
           # /etc/nixos/hardware-configuration.nix into the flake directory
           imports = [./hardware-configuration.nix];
+          swapDevices = [
+            {
+              device = "/swapfile";
+              size = swapSize;
+            }
+          ];
 
           # BOOT, INCREDIBLY IMPORTANT
           boot.loader.systemd-boot.enable = true;

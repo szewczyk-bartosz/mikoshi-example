@@ -32,6 +32,12 @@
           time.timeZone = "Europe/London";
           i18n.defaultLocale = "en_US.UTF-8";
 
+          swapDevices = [
+            {
+              device = "/swapfile";
+              size = 8192;
+            }
+          ];
           nixpkgs.config.allowUnfree = true;
 
           environment.systemPackages = with pkgs; [
