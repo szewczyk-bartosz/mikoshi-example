@@ -92,7 +92,7 @@ git clone https://github.com/szewczyk-bartosz/mikoshi-example
 Either (this will automatically set systemStateVersion):
 
 ```bash
-cd /mnt/etc/nixos/
+cd /mnt/etc/nixos/mikoshi-example
 sudo chmod +x setup.sh
 sudo ./setup.sh
 sudo vim flake.nix
@@ -100,7 +100,7 @@ sudo vim flake.nix
 
 OR manually:
 ```bash
-cd /mnt/etc/nixos/
+cd /mnt/etc/nixos/mikoshi-example
 cd mikoshi-example
 sudo cp ../hardware-configuration.nix .
 git add .
@@ -108,6 +108,8 @@ sudo vim flake.nix
 ```
  
 Open `flake.nix` as root (using sudo) and set the values at the top of the `let` block - `username`, `hostname`, `timeZone`, and `systemStateVersion`. Everything else can be left as is (if you are on BIOS then read the boot comments).
+
+Open the hardware config file with vim and ensure the masks on the boot partition are `0077`
  
 ```bash
 sudo nixos-install --flake .#<yourhostname>
@@ -169,7 +171,8 @@ Most base16 schemes are available. Custom themes are in `features/stylix/themes`
  
 ## Notes
  
-- This flake tracks `nixos-unstable`. On NixOS this is safe - if something breaks, roll back with `nixos-rebuild switch --rollback`.
+- This flake tracks `nixos-26.05`, and Mikoshi is maintained under that version, it is highly recommended that your home-manager input tracks that specific version to avoid compatibility issues.
+- If you rebuild and something breaks, roll back with `nixos-rebuild switch --rollback`.
 - `system.stateVersion` and `home.stateVersion` are not about keeping your system up to date. Set them once during install and never change them.
 - This is designed for EFI systems with home-manager as a NixOS module. Standalone home-manager is not supported or tested.
  
