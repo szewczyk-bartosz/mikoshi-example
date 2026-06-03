@@ -93,18 +93,18 @@ Either (this will automatically set systemStateVersion):
 
 ```bash
 cd /mnt/etc/nixos/
-chmod +x setup.sh
-./setup.sh
-vim flake.nix
+sudo chmod +x setup.sh
+sudo ./setup.sh
+sudo vim flake.nix
 ```
 
 OR manually:
 ```bash
 cd /mnt/etc/nixos/
 cd mikoshi-example
-cp ../hardware-configuration.nix .
+sudo cp ../hardware-configuration.nix .
 git add .
-vim flake.nix
+sudo vim flake.nix
 ```
  
 Open `flake.nix` as root (using sudo) and set the values at the top of the `let` block - `username`, `hostname`, `timeZone`, and `systemStateVersion`. Everything else can be left as is (if you are on BIOS then read the boot comments).
