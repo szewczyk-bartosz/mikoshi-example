@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-26.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -56,7 +56,7 @@
             users.username = {
               home.username = "username";
               home.homeDirectory = "/home/username";
-              home.stateVersion = "25.11";
+              home.stateVersion = "26.05";
             };
             programs.home-manager.enable = true;
 
@@ -89,7 +89,7 @@
             };
           };
 
-          system.stateVersion = "25.11"; # Set this to the version from /etc/nixos/configuration.nix, don't change it after
+          system.stateVersion = "26.05"; # Set this to the version from /etc/nixos/configuration.nix, don't change it after
           nix.settings.experimental-features = ["nix-command" "flakes"];
         })
       ];

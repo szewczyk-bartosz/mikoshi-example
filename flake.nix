@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-26.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -27,7 +27,7 @@
     locale = "en_US.UTF-8"; # Change if needed e.g. "en_GB.UTF-8"
     architecture = "x86_64-linux"; # Change if different architecture
     systemStateVersion = throw "Set your stateVersion to the one in /etc/nixos/configuration.nix (at the bottom)";
-    homeManagerStateVersion = "25.11";
+    homeManagerStateVersion = "26.05";
     # THE ABOVE 2 VALUES ARE *NOT* TO BE UPDATED, THEY DONT REFER TO YOUR SYTEM VERSION AND YOUR SYSTEM WILL NOT BE
     # OUT OF DATE IF THESE ARE OLD, THEY ARE MEANT TO BE SET WHEN SETTING UP THE COMPUTER AND NOT CHANGED
   in {
